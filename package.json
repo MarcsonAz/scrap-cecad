@@ -1,0 +1,29 @@
+{
+  "name": "scrap-cecad",
+  "version": "1.0.0",
+  "description": "Coletar dados do PBF na base do CECAD",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcsonAz/scrap-cecad.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcsonAz/scrap-cecad/issues"
+  },
+  "homepage": "https://github.com/MarcsonAz/scrap-cecad#readme",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "objects-to-csv": "^1.3.6"
+  }
+}
