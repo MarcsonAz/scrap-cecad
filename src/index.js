@@ -11,20 +11,23 @@ const app = express()
 
 let listaUF = await getUfList()
 /* GERAR UM ARQUIVO POR UF (0 - uf 11 Rondonia , 7 - uf 21 Maranhao)*/
-const UF = listaUF[20]
+const UF = listaUF[26]
 
-let MUN = await getMunListByUf(UF)
+let INDICADOR = '77' /* TAC: 75 e TCQC: 77 - lista em src/indicador.txt*/ 
 
-let INDICADOR = '75' /* TAC: 75 e TCQC: 77 - lista em src/indicador.txt*/ 
+let MUN = await getMunListByUf(UF,INDICADOR)
 
 let saidaUF = []
 
-console.log(MUN.length)
+let count = MUN.length
+
+console.log(count)
 
 for(let i=0; i<MUN.length; i++){
     //console.log(i,MUN[i].id)
     let saida = await getData(UF,MUN[i].id,INDICADOR);
-    console.log(`${MUN[i].regiao} ${MUN[i].sigla} ${MUN[i].id} ${MUN[i].nome}`);
+    //console.log(` ${Math.round((i+1)/count*100)}% : ${MUN[i].id} - ${MUN[i].nome}`);
+    console.log(` ${Math.round((i+1)/count*100)}% : ${MUN[i].regiao} ${MUN[i].sigla} ${MUN[i].id} ${MUN[i].nome}`);
     saidaUF.push(saida);
     await timeout(1);
 }

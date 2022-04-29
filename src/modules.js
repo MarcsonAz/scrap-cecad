@@ -62,6 +62,36 @@ async function getMunListByUf(cod_UF) {
     return(list)
 }
 
+async function getMunListByUf2(cod_UF,INDICADOR) { 
+  let list = []
+  try {
+    const { data } = await axios({
+      method: "GET",
+      url: `https://cecad.cidadania.gov.br/agregado/resumovariavelCecad.php`,
+      params: {
+        uf_ibge : cod_UF,
+        id : INDICADOR,
+      }
+    })
+    const $ = cheerio.load(data)
+    const elemSelector = '#municipioSAGIUFMU > option[value!=""]'
+      
+    $(elemSelector).each( (pIdx,pElem) => {
+      const id = $(pElem).attr('value')
+      const nome = $(pElem).text()
+      list.push({id,nome})
+      console.log({id,nome})
+    })
+
+  } 
+  catch (err) {
+      console.error(err)
+  }
+  return(list)
+}
+
+
+
 async function getUfList() {
     
     let list = []
